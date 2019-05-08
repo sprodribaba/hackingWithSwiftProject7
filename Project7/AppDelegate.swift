@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		if let tabBarController = window?.rootViewController as? UITabBarController {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
-			let vc = storyboard.instantiateViewController(withIdentifier: "NavController")
+			let vc = storyboard.instantiateViewController(withIdentifier: "NavControllert")
 			vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
 			tabBarController.viewControllers?.append(vc)
 		}

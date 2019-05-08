@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UITableViewController {
 	var petitions = [Petition]()
+    
+    let resultsLimit = 100
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -17,13 +19,13 @@ class ViewController: UITableViewController {
 		let urlString: String
 
 		if navigationController?.tabBarItem.tag == 0 {
-			urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+			urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=\(resultsLimit)"
 		} else {
-			urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
+			urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=\(resultsLimit)"
 		}
 
         if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
+            if let data = try Data(contentsOf: url) {
                 parse(json: data)
                 return
             }
@@ -57,7 +59,7 @@ class ViewController: UITableViewController {
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let vc = DetailViewController()
-		vc.detailItem = petitions[indexPath.row]
+		vc.detailItem = petitions[indexPath]
 		navigationController?.pushViewController(vc, animated: true)
 	}
 
